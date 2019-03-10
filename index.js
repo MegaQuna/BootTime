@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 var setdate = new Date();
-setdate.setHours(21);
+setdate.setHours(20);
 setdate.setMinutes(30);
 var prefix = "tb";
 var prefixmop = "tbmop";
@@ -109,10 +109,12 @@ bot.on('ready', () => {
             var dcurentdate = new Date();
 
             if(dcurentdate.getHours() === setdate.getHours() && dcurentdate.getMinutes() === setdate.getMinutes()){
-                bot.channels.get("495220836312285184").send({embed: {
-                    color: 3447003,
-                   description: "@Thunder Jest 21:30 Jeśli ktoś nie zrobił Drt i Donat proszę o zrobienie tego teraz"
-                  }});
+              let myRole = message.guild.roles.get("495223447207542825");
+
+              bot.channels.get("495220836312285184").send({embed: {
+                color: 3447003,
+                description: `${myRole} Jest 21:30 Proszę o uzupełnienie Drt i Donat`
+              }});
             }
         }, 60000)   
 });
