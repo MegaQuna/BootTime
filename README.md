@@ -1,0 +1,2 @@
+# BootTime
+Bot for discord
