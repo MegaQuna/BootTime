@@ -168,7 +168,7 @@ bot.on('message', message => {
                   
                   bot.channels.get("553679684412506112").send({embed: {
                       color: 3447003,
-                      description: ` U ${setdate.getHours()}:${setdate.getMinutes()} O${dcurentdate.getHours()}:${dcurentdate.getMinutes()}  HT ${dcurentdate.getHours() === setdate.getHours()} MT ${dcurentdate.getMinutes() === setdate.getMinutes()} S ${dcurentdate.getSeconds}`
+                      description: ` U ${setdate.getHours()}:${setdate.getMinutes()} O${dcurentdate.getHours()}:${dcurentdate.getMinutes()}  HT ${dcurentdate.getHours() === setdate.getHours()} MT ${dcurentdate.getMinutes() === setdate.getMinutes()} S ${dcurentdate.getSeconds()}`
                         //${myRole}
                         //495220836312285184
                     }});
@@ -176,9 +176,9 @@ bot.on('message', message => {
       
                   let myRole = message.guild.roles.get("495223447207542825");
                   if(dcurentdate.getHours() === setdate.getHours() && dcurentdate.getMinutes() === setdate.getMinutes()){
-                    bot.channels.get("553679684412506112").send({embed: {
+                    bot.channels.get("495220836312285184").send({embed: {
                       color: 3447003,
-                      description: ` Proszę o uzupełnienie Drt i Donat`
+                      description: `${myRole} Proszę o uzupełnienie Drt i Donat`
                         //${myRole}
                     }});
                 }
