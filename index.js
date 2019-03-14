@@ -184,8 +184,13 @@ bot.on('message', message => {
                 }
                   
               }, 60000)
-              message.reply(`H ${setdate.getHours()}`);
-              message.reply(`Ustawiono przypomnienie na godzinę ${setdate.getHours()+1}:${setdate.getMinutes()}`);
+              //message.reply(`H ${setdate.getHours()}`);
+              if(setdate.getHours() === 23){
+                message.reply(`Ustawiono przypomnienie na godzinę 00:${setdate.getMinutes()}`);
+              }else{
+                message.reply(`Ustawiono przypomnienie na godzinę ${setdate.getHours()+1}:${setdate.getMinutes()}`);  
+              }
+              
 
               return;
            
