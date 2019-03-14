@@ -168,7 +168,7 @@ bot.on('message', message => {
       
                   let myRole = message.guild.roles.get("495223447207542825");
                   if(dcurentdate.getHours() === setdate.getHours() && dcurentdate.getMinutes() === setdate.getMinutes()){
-                    bot.channels.get("553679684412506112").send({embed: {
+                    bot.channels.get("495220836312285184").send({embed: {
                       color: 3447003,
                       description: `${myRole} Proszę o uzupełnienie Drt i Donat`
                     }});
