@@ -166,12 +166,12 @@ bot.on('message', message => {
               setInterval(function(){
                 var dcurentdate = new Date();
                   
-                  bot.channels.get("553679684412506112").send({embed: {
-                      color: 3447003,
-                      description: ` U ${setdate.getHours()}:${setdate.getMinutes()} O${dcurentdate.getHours()}:${dcurentdate.getMinutes()}  HT ${dcurentdate.getHours() === setdate.getHours()} MT ${dcurentdate.getMinutes() === setdate.getMinutes()} S ${dcurentdate.getSeconds()}`
+                  //bot.channels.get("553679684412506112").send({embed: {
+                      //color: 3447003,
+                      //description: ` U ${setdate.getHours()}:${setdate.getMinutes()} O${dcurentdate.getHours()}:${dcurentdate.getMinutes()}  HT ${dcurentdate.getHours() === setdate.getHours()} MT ${dcurentdate.getMinutes() === setdate.getMinutes()} S ${dcurentdate.getSeconds()}`
                         //${myRole}
                         //495220836312285184
-                    }});
+                    //}});
                   
       
                   let myRole = message.guild.roles.get("495223447207542825");
