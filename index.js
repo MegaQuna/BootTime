@@ -106,23 +106,22 @@ bot.on('message', message => {
 
 //drt i donat
 bot.on('message', message => {
+    if (message.content.startsWith('tbtimer')) {
 
-  //ignoruj comendy pochodzące od bota 
-  if(message.author.bot) return;
-  //ignoruj komendy spoza gildi
-  if (!message.guild) return;
+        //ignoruj comendy pochodzące od bota 
+        if(message.author.bot) return;
+        //ignoruj komendy spoza gildi
+        if (!message.guild) return;
 
-  //sprawdzenie uprawnień
-  let staffrole = ['553518647948083210','553212976530849813']; //id uprawnień które moga używać komendy
-  var rolecheck=false;
+        //sprawdzenie uprawnień
+        let staffrole = ['553518647948083210','553212976530849813']; //id uprawnień które moga używać komendy
+        var rolecheck=false;
 
-  for(i=0;i<staffrole.length;i++) {
-    if(message.member.roles.filter((role) => role.id == staffrole[i]).size > 0) {
-      rolecheck=true;
-    }
-  }
-
-      if (message.content.startsWith('tbtimer')) {
+        for(i=0;i<staffrole.length;i++) {
+            if(message.member.roles.filter((role) => role.id == staffrole[i]).size > 0) {
+            rolecheck=true;
+            }
+        }
           
           if(!rolecheck){
             message.reply('nie masz wystarczających uprawnień');
@@ -169,14 +168,14 @@ bot.on('message', message => {
                   
                   bot.channels.get("553679684412506112").send({embed: {
                       color: 3447003,
-                      description: ` U ${setdate.getHours()}:${setdate.getMinutes()} O${dcurentdate.getHours()}:${dcurentdate.getMinutes()}  HT ${dcurentdate.getHours() === setdate.getHours()} MT ${dcurentdate.getMinutes() === setdate.getMinutes()} S>30 ${dcurentdate.getSeconds > 30}`
+                      description: ` U ${setdate.getHours()}:${setdate.getMinutes()} O${dcurentdate.getHours()}:${dcurentdate.getMinutes()}  HT ${dcurentdate.getHours() === setdate.getHours()} MT ${dcurentdate.getMinutes() === setdate.getMinutes()} S ${dcurentdate.getSeconds}`
                         //${myRole}
                         //495220836312285184
                     }});
                   
       
                   let myRole = message.guild.roles.get("495223447207542825");
-                  if(dcurentdate.getHours() === setdate.getHours() && dcurentdate.getMinutes() === setdate.getMinutes() && dcurentdate.getSeconds > 30){
+                  if(dcurentdate.getHours() === setdate.getHours() && dcurentdate.getMinutes() === setdate.getMinutes()){
                     bot.channels.get("553679684412506112").send({embed: {
                       color: 3447003,
                       description: ` Proszę o uzupełnienie Drt i Donat`
