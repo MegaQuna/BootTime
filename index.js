@@ -144,7 +144,7 @@ bot.on('message', message => {
 
             if(!isNaN(h) && !isNaN(m)){
               //message.channel.send('ogodzina '+h+' minuta '+m);
-              if(h>0 && h<25 && m>0 && m<60){
+              if(h>-1 && h<24 && m>-1 && m<60){
 
                 setdate.setHours(h-1);
                 setdate.setMinutes(m);
