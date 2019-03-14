@@ -146,7 +146,7 @@ bot.on('message', message => {
               //message.channel.send('ogodzina '+h+' minuta '+m);
               if(h>0 && h<25 && m>0 && m<60){
 
-                setdate.setHours(h);
+                setdate.setHours(h-1);
                 setdate.setMinutes(m);
 
               }else{
@@ -174,15 +174,10 @@ bot.on('message', message => {
                         //${myRole}
                     }});
                 }
-                  bot.channels.get("495220836312285184").send({embed: {
-                      color: 3447003,
-                      description: ` U ${setdate.getHours()}:${setdate.getMinutes()} O ${dcurentdate.getHours()}:${dcurentdate.getMinutes()}`
-                        //${myRole}
-                    }});
                   
               }, 60000)
 
-              message.reply(`Ustawiono przypomnienie na godzinę ${setdate.getHours()}:${setdate.getMinutes()}`);
+              message.reply(`Ustawiono przypomnienie na godzinę ${setdate.getHours()+1}:${setdate.getMinutes()}`);
 
               return;
            
