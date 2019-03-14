@@ -170,12 +170,19 @@ bot.on('message', message => {
                   if(dcurentdate.getHours() === setdate.getHours() && dcurentdate.getMinutes() === setdate.getMinutes()){
                     bot.channels.get("495220836312285184").send({embed: {
                       color: 3447003,
-                      description: `${myRole} Proszę o uzupełnienie Drt i Donat`
+                      description: ` Proszę o uzupełnienie Drt i Donat`
+                        //${myRole}
                     }});
-                }  
+                }
+                  bot.channels.get("495220836312285184").send({embed: {
+                      color: 3447003,
+                      description: ` U ${setdate.getHours()}:${setdate.getMinutes()} O ${dcurentdate.getHours()}:${dcurentdate.getMinutes()}`
+                        //${myRole}
+                    }});
+                  
               }, 60000)
 
-              message.reply(`Widomość przypomnienia ustawiona na godzinę ${setdate.getHours()}:${setdate.getMinutes()}`);
+              message.reply(`Ustawiono przypomnienie na godzinę ${setdate.getHours()}:${setdate.getMinutes()}`);
 
               return;
            
