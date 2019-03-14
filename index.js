@@ -39,7 +39,9 @@ bot.on('message' , message => {
         return;
     }else{
         if(message.content === prefix+"help"){
-            message.channel.send('tbping - pinguje serwer i podaje opużnienie w połączeniu\ntbkick @nick  - usuwa gracza z serwera\ntbmute @nick  - mutuje gracza na tym kanale\ntbunmute @nick  - usuwa muta z gracza na tym kanale');
+            message.channel.send('tbping - pinguje serwer i podaje opóżnienie w połączeniu\n'+
+            'tbkick @nick  - usuwa gracza z serwera\ntbtimer godzina:minuta - ustawia przypomnienie'+
+            ' o Drt i Donat na daną godzinę');
             return;
         }else if(message.content === prefix+"ping") {
             // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
@@ -103,20 +105,82 @@ bot.on('message', message => {
   });
 
 //drt i donat
-bot.on('ready', () => {
+bot.on('message', message => {
 
-        setInterval(function(){ // repeat this every 24 hours
-            var dcurentdate = new Date();
+  //ignoruj comendy pochodzące od bota 
+  if(message.author.bot) return;
+  //ignoruj komendy spoza gildi
+  if (!message.guild) return;
 
-            if(dcurentdate.getHours() === setdate.getHours() && dcurentdate.getMinutes() === setdate.getMinutes()){
-              let myRole = message.guild.roles.get("495223447207542825");
+  //sprawdzenie uprawnień
+  let staffrole = ['553518647948083210','553212976530849813']; //id uprawnień które moga używać komendy
+  var rolecheck=false;
 
-              bot.channels.get("495220836312285184").send({embed: {
-                color: 3447003,
-                description: `${myRole} Jest 21:30 Proszę o uzupełnienie Drt i Donat`
-              }});
-            }
-        }, 60000)   
+  for(i=0;i<staffrole.length;i++) {
+    if(message.member.roles.filter((role) => role.id == staffrole[i]).size > 0) {
+      rolecheck=true;
+    }
+  }
+
+  if(!rolecheck){
+    message.reply('nie masz wystarczających uprawnień');
+    return;
+  }
+      if (message.content.startsWith('tbtimer')) {
+
+        
+          let command = message.content.substring(message.content.indexOf(" ") + 1, message.content.length);
+          //message.channel.send('Command1 + ' + command );
+
+          var array = command.split(':');
+
+          //message.channel.send('Arg ' + array );
+
+          if(array.length === 2){
+            //message.channel.send('ok ');
+
+            var h = parseInt(array[0], 10) 
+            var m = parseInt(array[1], 10) 
+
+            if(!isNaN(h) && !isNaN(m)){
+              //message.channel.send('ogodzina '+h+' minuta '+m);
+              if(h>0 && h<25 && m>0 && m<60){
+
+                setdate.setHours(h);
+                setdate.setMinutes(m);
+
+              }else{
+                message.reply('Nieprawidłowe wartości godziny lub minut');
+                return;
+              }
+              
+             }else{
+              message.reply('Podane wartości godziny lub minut nie są liczbami');
+              return;
+             }
+
+          }else{
+            message.reply('Nieprawidłowa ilość parametrów wpisz tbhelp po więcej informacji');
+            return;
+          }
+              setInterval(function(){
+                var dcurentdate = new Date();
+      
+                  let myRole = message.guild.roles.get("495223447207542825");
+                  if(dcurentdate.getHours() === setdate.getHours() && dcurentdate.getMinutes() === setdate.getMinutes()){
+                    bot.channels.get("553679684412506112").send({embed: {
+                      color: 3447003,
+                      description: `${myRole} Proszę o uzupełnienie Drt i Donat`
+                    }});
+                }  
+              }, 60000)
+
+              message.reply(`Widomość przypomnienia ustawiona na godzinę ${setdate.getHours()}:${setdate.getMinutes()}`);
+
+              return;
+           
+        
+      }     
 });
 
 //powitanie
