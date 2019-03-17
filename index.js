@@ -4,7 +4,7 @@ var setdate = new Date();
 setdate.setHours(20);
 setdate.setMinutes(30);
 var prefix = "tb";
-var prefixmop = "tbmop";
+var timerhandle;
 
 //tumulec help i ping
 bot.on('message' , message => {
@@ -163,7 +163,8 @@ bot.on('message', message => {
             message.reply('Nieprawidłowa ilość parametrów wpisz tbhelp po więcej informacji');
             return;
           }
-              setInterval(function(){
+              clearInterval(timerhandle);
+              timerhandle=setInterval(function(){
                 var dcurentdate = new Date();
                   
                   //bot.channels.get("553679684412506112").send({embed: {
