@@ -106,9 +106,9 @@ bot.on('message', message => {
     }
   });
 
-//drt i donat
+//drt i donat start
 bot.on('message', message => {
-    if (message.content.startsWith('tbtimer')) {
+    if (message.content.startsWith('tbtimer') && !message.content.startsWith('tbtimerstop')) {
 
         //ignoruj comendy pochodzące od bota 
         if(message.author.bot) return;
@@ -205,6 +205,37 @@ bot.on('message', message => {
            
         
       }     
+});
+
+//drt i donat timerstop
+bot.on('message', message => {
+  if (message.content.startsWith('tbtimerstop')) {
+      
+      //ignoruj comendy pochodzące od bota 
+        if(message.author.bot) return;
+        //ignoruj komendy spoza gildi
+        if (!message.guild) return;
+
+        //sprawdzenie uprawnień
+        let staffrole = ['553518647948083210','553212976530849813']; //id uprawnień które moga używać komendy
+        var rolecheck=false;
+
+        for(i=0;i<staffrole.length;i++) {
+            if(message.member.roles.filter((role) => role.id == staffrole[i]).size > 0) {
+            rolecheck=true;
+            }
+        }
+          
+          if(!rolecheck){
+            message.reply('nie masz wystarczających uprawnień');
+            return;
+            }
+
+    clearInterval(timerhandle);
+    message.reply(` Zatrzymano przypomnienie`);
+
+    return;
+  }
 });
 
 //powitanie
