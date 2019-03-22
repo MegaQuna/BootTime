@@ -42,7 +42,7 @@ bot.on('message' , message => {
             message.channel.send('tbping - pinguje serwer i podaje opóżnienie w połączeniu\n'+
             'tbkick @nick  - usuwa gracza z serwera\ntbtimer godzina:minuta - ustawia przypomnienie'+
             ' o Drt i Donat na daną godzinę\ntbtimerstop - zatrzymuje przypomnienie o Drt i Donat'+
-            '\n tbx @nick wyszukuje ostatnią wiadomość gracza na kanale komendy i dodaje reakcje MUGOL (zasięg 15wiadomości)');
+            '\ntbx @nick wyszukuje ostatnią wiadomość gracza na kanale komendy i dodaje reakcje MUGOL (zasięg 15wiadomości)');
             return;
         }else if(message.content === prefix+"ping") {
             // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
