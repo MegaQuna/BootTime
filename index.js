@@ -14,10 +14,8 @@ bot.on('message' , message => {
     if(message.author.bot) return;
 
     if(message.content.toLocaleLowerCase() == "tumulec"){
-        var date =  new Date;
-        //var time = date.getTime.toString;
 
-        message.reply('Jebać Tumulca!! '+date);
+        message.reply('Jebać Tumulca!! ');
         return
     }
 
@@ -43,7 +41,8 @@ bot.on('message' , message => {
         if(message.content === prefix+"help"){
             message.channel.send('tbping - pinguje serwer i podaje opóżnienie w połączeniu\n'+
             'tbkick @nick  - usuwa gracza z serwera\ntbtimer godzina:minuta - ustawia przypomnienie'+
-            ' o Drt i Donat na daną godzinę');
+            ' o Drt i Donat na daną godzinę\ntbtimerstop - zatrzymuje przypomnienie o Drt i Donat'+
+            '\n tbx @nick wyszukuje ostatnią wiadomość gracza na kanale komendy i dodaje reakcje MUGOL (zasięg 15wiadomości)');
             return;
         }else if(message.content === prefix+"ping") {
             // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
@@ -105,6 +104,78 @@ bot.on('message', message => {
       }
     }
   });
+
+//Set reaction
+bot.on('message', message => {
+  if (message.content.startsWith('tbx')) {
+
+    const user = message.mentions.users.first();
+
+    if (!user) {
+      return;
+    }
+
+    //member który pisze wiadomość 
+    const member = message.guild.member(user);
+
+    if (!member) {
+      return;
+    }
+
+    if (message.author.bot) return;
+    //ignoruj komendy spoza gildi
+    if (!message.guild) return;
+
+    //sprawdzenie uprawnień
+    let staffrole = ['553518647948083210','553212976530849813','497724809195814912']; //id uprawnień które moga używać komendy
+    var rolecheck = false;
+
+    for (i = 0; i < staffrole.length; i++) {
+      if (message.member.roles.filter((role) => role.id == staffrole[i]).size > 0) {
+        rolecheck = true;
+      }
+    }
+
+    if (!rolecheck) {
+      message.reply('nie masz wystarczających uprawnień');
+      return;
+    }
+
+    let rolemark = ['553518647948083210','553212976530849813']; //id uprawnień które nie mogą być oznaczane reakcją 
+    var rolecheckmark = false;
+
+    for (i = 0; i < rolemark.length; i++) {
+      if (member.roles.filter((role) => role.id == rolemark[i]).size > 0) {
+        rolecheckmark = true;
+      }
+    }
+
+    if (rolecheckmark) { 
+        message.reply("🤦🤦🤦 Baranku mały jeszcze się taki nie urodził, co by Admina ugodził 😂");
+      return;
+    }
+
+    message.channel.fetchMessages({ limit: 11 }).then(messages => {
+      var znalezione = Array.from(messages.values());
+
+      var i;
+      for (i = 0; i < znalezione.length; i++) {
+        if (znalezione[i].content != null && znalezione[i].author == user) {
+          znalezione[i].react("🇲").then(async function () {
+            await znalezione[i].react("🇺");
+            await znalezione[i].react("🇬");
+            await znalezione[i].react("🇴");
+            await znalezione[i].react("🇱");
+          });
+          break;
+        }
+      }
+
+    })
+    return;
+  }
+});
+
 
 //drt i donat start
 bot.on('message', message => {
