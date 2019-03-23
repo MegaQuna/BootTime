@@ -247,7 +247,7 @@ bot.on('message', message => {
                         //495220836312285184
                     //}});
                   
-                  const guild = bot.guilds.get(ServerId);
+                  var guild = bot.guilds.get(ServerId);
                   var text=``;
                   roleArray.forEach(function(item, index) {
                   var role = guild.roles.get(item);
