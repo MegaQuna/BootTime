@@ -6,7 +6,7 @@ setdate.setMinutes(30);
 var prefix = "tb";
 var timerhandle;
 var ServerId = "491952683029364737";
-var roleArray = ["495223447207542825"];
+var roleArray = ["495223447207542825","556020653317160961"];
 
 //tumulec help i ping
 bot.on('message' , message => {
@@ -256,7 +256,7 @@ bot.on('message', message => {
                   text+=`Proszę o uzupełnienie Drt i Donat`
                   //let myRole = message.guild.roles.get("495223447207542825");
                   if(dcurentdate.getHours() === setdate.getHours() && dcurentdate.getMinutes() === setdate.getMinutes()){
-                    bot.channels.get("495220836312285184").send({embed: {
+                    bot.channels.get("558736687434301471").send({embed: {
                       color: 3447003,
                       description: text
                         //${myRole}
