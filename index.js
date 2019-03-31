@@ -8,6 +8,34 @@ var timerhandle;
 var ServerId = "491952683029364737";
 var roleArray = ["495223447207542825","556020653317160961"];
 
+function setTimer(){
+    var dcurentdate = new Date();
+                  
+    //bot.channels.get("553679684412506112").send({embed: {
+    //color: 3447003,
+    //description: ` U ${setdate.getHours()}:${setdate.getMinutes()} O${dcurentdate.getHours()}:${dcurentdate.getMinutes()}  HT ${dcurentdate.getHours() === setdate.getHours()} MT ${dcurentdate.getMinutes() === setdate.getMinutes()} S ${dcurentdate.getSeconds()}`
+    //${myRole}
+    //495220836312285184
+    //}});
+                  
+    var guild = bot.guilds.get(ServerId);
+    var text=``;
+    roleArray.forEach(function(item, index) {
+        var role = guild.roles.get(item);
+        text+=`${role} `;
+        });
+    text+=`Proszę o uzupełnienie Drt i Donat`
+    //let myRole = message.guild.roles.get("495223447207542825");
+    if(dcurentdate.getHours() === setdate.getHours() && dcurentdate.getMinutes() === setdate.getMinutes()){
+        bot.channels.get("558736687434301471").send({embed: {
+            color: 3447003,
+            description: text
+            //${myRole}
+        }});
+    }
+                  
+}
+
 //tumulec help i ping
 bot.on('message' , message => {
     
@@ -237,33 +265,7 @@ bot.on('message', message => {
             return;
           }
               clearInterval(timerhandle);
-              timerhandle=setInterval(function(){
-                var dcurentdate = new Date();
-                  
-                  //bot.channels.get("553679684412506112").send({embed: {
-                      //color: 3447003,
-                      //description: ` U ${setdate.getHours()}:${setdate.getMinutes()} O${dcurentdate.getHours()}:${dcurentdate.getMinutes()}  HT ${dcurentdate.getHours() === setdate.getHours()} MT ${dcurentdate.getMinutes() === setdate.getMinutes()} S ${dcurentdate.getSeconds()}`
-                        //${myRole}
-                        //495220836312285184
-                    //}});
-                  
-                  var guild = bot.guilds.get(ServerId);
-                  var text=``;
-                  roleArray.forEach(function(item, index) {
-                  var role = guild.roles.get(item);
-                  text+=`${role} `;
-                  });
-                  text+=`Proszę o uzupełnienie Drt i Donat`
-                  //let myRole = message.guild.roles.get("495223447207542825");
-                  if(dcurentdate.getHours() === setdate.getHours() && dcurentdate.getMinutes() === setdate.getMinutes()){
-                    bot.channels.get("558736687434301471").send({embed: {
-                      color: 3447003,
-                      description: text
-                        //${myRole}
-                    }});
-                }
-                  
-              }, 60000)
+              timerhandle=setInterval(setTimer , 60000);
               //message.reply(`H ${setdate.getHours()}`);
               if(setdate.getHours() === 23){
                 message.reply(`Ustawiono przypomnienie na godzinę 00:${setdate.getMinutes()}`);
