@@ -1,5 +1,12 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+
+var http = require("http");
+setInterval(function() {
+    http.get("http://botime.herokuapp.com");
+}, 300000);
+
+
 var setdate = new Date();
 setdate.setHours(20);
 setdate.setMinutes(30);
