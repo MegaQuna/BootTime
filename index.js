@@ -249,7 +249,7 @@ bot.on('message', message => {
               //message.channel.send('ogodzina '+h+' minuta '+m);
               if(h>-1 && h<24 && m>-1 && m<60){
 
-                setdate.setHours(h-1);
+                setdate.setHours(h-2);
                 setdate.setMinutes(m);
 
               }else{
