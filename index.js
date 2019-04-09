@@ -13,13 +13,6 @@ var roleArray = ["495223447207542825","556020653317160961"];
 function setTimer(){
     var dcurentdate = new Date();
                   
-    //bot.channels.get("553679684412506112").send({embed: {
-    //color: 3447003,
-    //description: ` U ${setdate.getHours()}:${setdate.getMinutes()} O${dcurentdate.getHours()}:${dcurentdate.getMinutes()}  HT ${dcurentdate.getHours() === setdate.getHours()} MT ${dcurentdate.getMinutes() === setdate.getMinutes()} S ${dcurentdate.getSeconds()}`
-    //${myRole}
-    //495220836312285184
-    //}});
-                  
     var guild = bot.guilds.get(ServerId);
     var text=``;
     roleArray.forEach(function(item, index) {
@@ -27,27 +20,19 @@ function setTimer(){
         text+=`${role} `;
         });
     text+=`Proszę o uzupełnienie Drt i Donat`
-    //let myRole = message.guild.roles.get("495223447207542825");
     if(dcurentdate.getHours() === setdate.getHours() && dcurentdate.getMinutes() === setdate.getMinutes()){
         bot.channels.get("558736687434301471").send({embed: {
             color: 3447003,
             description: text
-            //${myRole}
         }});
     }
                   
 }
 
-//tumulec help i ping
+//help i ping
 bot.on('message' , message => {
     
     if(message.author.bot) return;
-
-    if(message.content.toLocaleLowerCase() == "tumulec"){
-
-        message.reply('Jebać Tumulca!! ');
-        return
-    }
 
     if(message.content.toLocaleLowerCase() == "adi"){
       var date =  new Date;
@@ -75,8 +60,6 @@ bot.on('message' , message => {
             '\ntbx @nick wyszukuje ostatnią wiadomość gracza na kanale komendy i dodaje reakcje MUGOL (zasięg 15wiadomości)');
             return;
         }else if(message.content === prefix+"ping") {
-            // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
-            // The second ping is an average latency between the bot and the websocket server (one-way, not round-trip)
             message.channel.send("Ping?").then(function(m){m.edit(`Pong! opóźnienie:  ${m.createdTimestamp - message.createdTimestamp}ms.`)});
             return;
         }else{
@@ -90,7 +73,7 @@ bot.on('message' , message => {
 //kick z serwera
 bot.on('message', message => {
     if(message.author.bot) return;
-    // Ignore messages that aren't from a guild
+
     if (!message.guild) return;
 
     if (message.content.startsWith('tbkick')) {
@@ -99,36 +82,25 @@ bot.on('message', message => {
             return message.reply("Nie masz wysatarczających uprawnień");
         }
         
-      // Assuming we mention someone in the message, this will return the user
-      // Read more about mentions over at https://discord.js.org/#/docs/main/stable/class/MessageMentions
       const user = message.mentions.users.first();
-      // If we have a user mentioned
       if (user) {
-        // Now we get the member from the user
         const member = message.guild.member(user);
-        // If the member is in the guild
         if (member) {
-          /**
-           * Kick the member
-           * Make sure you run this on a member, not a user!
-           * There are big differences between a user and a member
-           */
+         
           member.kick('powod').then(() => {
-            // We let the message author know we were able to kick the person
+           
             message.reply(`usuną gracza ${user.tag} z serwera`);
           }).catch(err => {
-            // An error happened
-            // This is generally due to the bot not being able to kick the member,
-            // either due to missing permissions or role hierarchy
+            
             message.reply('nie udalo sie');
-            // Log the error
+    
             console.error(err);
           });
         } else {
-          // The mentioned user isn't in this guild
+
           message.reply('Tnie ma go');
         }
-      // Otherwise, if no user was mentioned
+
       } else {
         message.reply('nie mozesz');
       }
@@ -145,7 +117,7 @@ bot.on('message', message => {
       return;
     }
 
-    //member który pisze wiadomość 
+ 
     const member = message.guild.member(user);
 
     if (!member) {
@@ -153,10 +125,10 @@ bot.on('message', message => {
     }
 
     if (message.author.bot) return;
-    //ignoruj komendy spoza gildi
+
     if (!message.guild) return;
 
-    //sprawdzenie uprawnień
+
     let staffrole = ['553518647948083210','553212976530849813','497724809195814912']; //id uprawnień które moga używać komendy
     var rolecheck = false;
 
@@ -211,12 +183,12 @@ bot.on('message', message => {
 bot.on('message', message => {
     if (message.content.startsWith('tbtimer') && !message.content.startsWith('tbtimerstop')) {
 
-        //ignoruj comendy pochodzące od bota 
+
         if(message.author.bot) return;
-        //ignoruj komendy spoza gildi
+
         if (!message.guild) return;
 
-        //sprawdzenie uprawnień
+
         let staffrole = ['553518647948083210','553212976530849813']; //id uprawnień które moga używać komendy
         var rolecheck=false;
 
@@ -230,18 +202,10 @@ bot.on('message', message => {
             message.reply('nie masz wystarczających uprawnień');
             return;
             }
-
-        
+      
           let command = message.content.substring(message.content.indexOf(" ") + 1, message.content.length);
-          //message.channel.send('Command1 + ' + command );
-
           var array = command.split(':');
-
-          //message.channel.send('Arg ' + array );
-
           if(array.length === 2){
-            //message.channel.send('ok ');
-
             var h = parseInt(array[0], 10) 
             var m = parseInt(array[1], 10) 
 
@@ -277,8 +241,7 @@ bot.on('message', message => {
               
 
               return;
-           
-        
+          
       }     
 });
 
@@ -286,9 +249,9 @@ bot.on('message', message => {
 bot.on('message', message => {
   if (message.content.startsWith('tbtimerstop')) {
       
-      //ignoruj comendy pochodzące od bota 
+      
         if(message.author.bot) return;
-        //ignoruj komendy spoza gildi
+
         if (!message.guild) return;
 
         //sprawdzenie uprawnień
